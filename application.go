@@ -50,6 +50,7 @@ type Application struct {
 	Mem                   *float64            `json:"mem,omitempty"`
 	Tasks                 []*Task             `json:"tasks,omitempty"`
 	Ports                 []int               `json:"ports"`
+	PortDefinitions       []PortDefinition    `json:"portDefinitions,omitempty"`
 	RequirePorts          *bool               `json:"requirePorts,omitempty"`
 	BackoffSeconds        *float64            `json:"backoffSeconds,omitempty"`
 	BackoffFactor         *float64            `json:"backoffFactor,omitempty"`
@@ -277,6 +278,26 @@ func (r *Application) EmptyEnvs() *Application {
 // SetExecutor sets the executor
 func (r *Application) SetExecutor(executor string) *Application {
 	r.Executor = &executor
+
+	return r
+}
+
+// AddPortDefinition adds one portDefinition to the application
+//		pd:	the PortDefinition to add
+func (r *Application) AddPortDefinition(pd *PortDefinition) *Application {
+	if r.PortDefinitions == nil {
+		r.EmptyPortDefinition()
+	}
+
+	r.PortDefinitions = append(r.PortDefinitions, *pd)
+
+	return r
+}
+
+// EmptyPortDefinition explicitly empties portDefinitions -- use this if you need to empty
+// the portDefinitions of an application that already has portDefinitions set.
+func (r *Application) EmptyPortDefinition() *Application {
+	r.PortDefinitions = []PortDefinition{}
 
 	return r
 }

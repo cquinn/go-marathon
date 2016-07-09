@@ -49,14 +49,14 @@ type Application struct {
 	Instances             *int                `json:"instances,omitempty"`
 	Mem                   *float64            `json:"mem,omitempty"`
 	Tasks                 []*Task             `json:"tasks,omitempty"`
-	Ports                 []int               `json:"ports"`
+	Ports                 []int               `json:"ports,omitempty"`
 	PortDefinitions       []PortDefinition    `json:"portDefinitions,omitempty"`
 	RequirePorts          *bool               `json:"requirePorts,omitempty"`
 	BackoffSeconds        *float64            `json:"backoffSeconds,omitempty"`
 	BackoffFactor         *float64            `json:"backoffFactor,omitempty"`
 	MaxLaunchDelaySeconds *float64            `json:"maxLaunchDelaySeconds,omitempty"`
 	Deployments           []map[string]string `json:"deployments,omitempty"`
-	Dependencies          []string            `json:"dependencies"`
+	Dependencies          []string            `json:"dependencies,omitempty"`
 	TasksRunning          int                 `json:"tasksRunning,omitempty"`
 	TasksStaged           int                 `json:"tasksStaged,omitempty"`
 	TasksHealthy          int                 `json:"tasksHealthy,omitempty"`
